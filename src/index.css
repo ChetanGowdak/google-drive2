@@ -1,0 +1,401 @@
+/* 🧼 CLEAN GOOGLE DRIVE STYLE BASE THEME */
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+*::-webkit-scrollbar { display: none; }
+
+body {
+  font-family: 'Open Sans', 'Roboto', Arial, sans-serif;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+button { cursor: pointer; }
+a { text-decoration: none; }
+
+/* 🎨 THEME VARIABLES */
+:root {
+  --bg: #ffffff;
+  --text: #111827;
+  --muted: #f8f9fa;
+  --border: #d1d5db;
+  --menu-bg: #ffffff;
+  --menu-hover: #f3f4f6;
+  --menu-text: #111827;
+  --shadow: 0 6px 18px rgba(0,0,0,.08);
+}
+
+body.dark-mode {
+  --bg: #1f2023;
+  --text: #e5e7eb;
+  --muted: #2b2c2f;
+  --border: #3d3e42;
+  --menu-bg: #2b2c2f;
+  --menu-hover: #3a3b3f;
+  --menu-text: #f3f4f6;
+  --shadow: 0 10px 24px rgba(0,0,0,.35);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* GLOBAL SURFACES */
+body { background: var(--bg); color: var(--text); }
+
+/* ✅ HEADER CLEAN */
+.header-bar {
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  box-shadow: none;
+  padding: 6px 0;
+}
+body.dark-mode .header-bar {
+  background: #1f1f1f !important;
+  border-color: #2c2c2c !important;
+}
+
+/* ✅ SEARCH CLEAN — NO WRAPPER BOXES */
+.search-desktop > div,
+.search-mobile > div {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+/* ✅ OPTIONS MENU CLEAN (Floating like Drive) */
+.optionsContainer svg {
+  background: transparent !important;
+  padding: 6px !important;
+  border-radius: 50%;
+  transition: background 0.15s ease;
+}
+.optionsContainer svg:hover {
+  background: rgba(0,0,0,0.06);
+}
+body.dark-mode .optionsContainer svg:hover {
+  background: rgba(255,255,255,0.12);
+}
+
+.OptionsMenu,
+.MuiPaper-root,
+.MuiMenu-paper {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+/* ✅ MENU ITEMS ONLY - CLEAN CHIPS */
+.OptionsMenu span,
+.MuiMenuItem-root {
+  background: var(--menu-bg) !important;
+  border: 1px solid var(--border) !important;
+  margin-bottom: 2px;
+  border-radius: 6px !important;
+  padding: 8px 12px !important;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.OptionsMenu span:hover,
+.MuiMenuItem-root:hover {
+  background: var(--menu-hover) !important;
+}
+
+/* ✅ DELETE ITEM COLOR */
+.delete-item,
+.OptionsMenu span.delete {
+  color: #ef4444 !important;
+}
+body.dark-mode .delete-item,
+body.dark-mode .OptionsMenu span.delete {
+  color: #ff6b6b !important;
+}
+
+/* ✅ Remove entire menu container wrapper */
+.MuiPopover-paper,
+.MuiMenu-paper,
+.MuiPaper-root {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+/* ✅ Make each menu item look like floating Drive chip */
+.MuiMenuItem-root {
+  background: var(--menu-bg) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 6px !important;
+  margin-bottom: 6px !important;
+  padding: 8px 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  transition: background 0.15s ease;
+}
+
+/* ✅ Hover clean like Drive */
+.MuiMenuItem-root:hover {
+  background: var(--menu-hover) !important;
+}
+
+/* ✅ Align the menu neatly (Google Drive style floating list) */
+.MuiMenu-list {
+  padding: 0 !important;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ✅ Ensure menu is not shifting layout */
+.optionsContainer {
+  display: flex;
+  align-items: flex-start !important;
+  flex-direction: column !important;
+}
+
+/* ✅ 1. Remove ANY MUI menu wrapper box completely */
+.MuiPopover-root *,
+.MuiPaper-root,
+.MuiMenu-paper,
+.MuiPopover-paper,
+.MuiMenu-list,
+.MuiList-root {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* ✅ 2. Force only each option to look like Drive chip */
+.MuiMenuItem-root {
+  background: var(--menu-bg) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 6px !important;
+  margin-bottom: 6px !important;
+  padding: 8px 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  min-width: 160px !important; /* ✅ ensures clean width */
+}
+
+/* ✅ Hover like Google Drive */
+.MuiMenuItem-root:hover {
+  background: var(--menu-hover) !important;
+}
+
+/* ✅ 3. Fix dropdown layout floating neatly */
+.MuiMenu-list {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+}
+
+/* ✅ 4. Fix weird spacing & force free-floating look */
+.MuiPopover-paper,
+.MuiPopover-root {
+  box-shadow: none !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+/* 🎯 FINAL CLEAN DROPDOWN MENU STYLING (Google Drive Style) */
+
+/* ✅ MAIN POPUP CONTAINER (one floating box with shadow) */
+.MuiPaper-root,
+.MuiMenu-paper,
+.MuiPopover-paper {
+  background: var(--menu-bg) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 8px !important;
+  box-shadow: var(--shadow) !important;
+  padding: 6px 0 !important; /* subtle padding like Drive */
+}
+
+/* ✅ CLEAN DROPDOWN ITEMS */
+.MuiMenuItem-root {
+  background: transparent !important; /* No inner box */
+  color: var(--text) !important;
+  padding: 8px 14px !important;
+  border-radius: 4px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  min-width: 180px !important; /* clean width */
+}
+
+/* ✅ HOVER EFFECT LIKE GOOGLE DRIVE */
+.MuiMenuItem-root:hover {
+  background: var(--menu-hover) !important;
+}
+
+/* ✅ DELETE ITEM RED */
+.MuiMenuItem-root.delete-item {
+  color: #ef4444 !important;
+}
+body.dark-mode .MuiMenuItem-root.delete-item {
+  color: #ff6b6b !important;
+}
+
+/* ✅ REMOVE EXTRA BACKGROUND WRAPPERS */
+.MuiPopover-root,
+.MuiPopover-root * {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* 🎯 Final Google Drive Style Dropdown Menu */
+
+/* Main dropdown container with soft floating look */
+.optionsMenuPaper, 
+.MuiPopover-paper, 
+.MuiMenu-paper {
+  background: var(--menu-bg) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 10px !important;
+  box-shadow: var(--shadow) !important;
+  padding: 6px 0 !important;
+  overflow: hidden !important;
+}
+
+/* Clean list layout */
+.MuiMenu-list {
+  padding: 4px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+}
+
+/* Each clickable menu row */
+.MuiMenuItem-root {
+  background: transparent !important;
+  color: var(--text) !important;
+  padding: 10px 14px !important;
+  border-radius: 6px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-size: 14px !important;
+  cursor: pointer !important;
+  transition: background 0.15s ease;
+}
+
+/* Hover subtle like Google Drive */
+.MuiMenuItem-root:hover {
+  background: var(--menu-hover) !important;
+}
+
+/* Delete stays red */
+.MuiMenuItem-root.delete-item {
+  color: #e63946 !important;
+}
+body.dark-mode .MuiMenuItem-root.delete-item {
+  color: #ff6b6b !important;
+}
+
+/* Meta rows (date + size) clean + muted */
+.dropdown-meta {
+  font-size: 12px !important;
+  padding: 8px 14px !important;
+  color: var(--text) !important;
+  opacity: 0.6 !important;
+}
+
+/* Remove ugly boxes around ellipsis trigger */
+.optionsContainer svg {
+  background: transparent !important;
+  padding: 6px;
+  border-radius: 50%;
+  transition: background 0.15s ease;
+}
+.optionsContainer svg:hover {
+  background: rgba(0,0,0,0.06) !important;
+}
+body.dark-mode .optionsContainer svg:hover {
+  background: rgba(255,255,255,0.12) !important;
+}
+
+/* Meta info inside dropdown */
+.dropdown-meta {
+  padding: 6px 14px;
+  font-size: 12px;
+  opacity: 0.7;
+  border: none !important;
+  background: transparent !important;
+}
+
+/* ✅ CLEAN GOOGLE DRIVE DROPDOWN STYLE */
+.optionsContainer svg {
+  background: transparent !important;
+  padding: 6px !important;
+  border-radius: 50%;
+  transition: background 0.15s ease;
+}
+.optionsContainer svg:hover {
+  background: rgba(0,0,0,0.06);
+}
+body.dark-mode .optionsContainer svg:hover {
+  background: rgba(255,255,255,0.12);
+}
+
+/* ✅ Main dropdown floating container */
+.OptionsMenu,
+.MuiPaper-root,
+.MuiMenu-paper {
+  background: var(--menu-bg) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 8px !important;
+  box-shadow: var(--shadow) !important;
+  padding: 6px 0 !important;
+}
+
+/* ✅ Dropdown items (Download, Copy, Share, Delete) */
+.MuiMenuItem-root,
+.OptionsMenu span {
+  background: transparent !important;
+  color: var(--text) !important;
+  padding: 10px 14px !important;
+  border: none !important;
+  border-radius: 4px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  min-width: 200px !important;
+  transition: background 0.2s ease;
+}
+.MuiMenuItem-root:hover,
+.OptionsMenu span:hover {
+  background: var(--menu-hover) !important;
+}
+
+/* ✅ Delete Row Highlight */
+.OptionsMenu span.delete {
+  color: #e63946 !important;
+}
+body.dark-mode .OptionsMenu span.delete {
+  color: #ff6b6b !important;
+}
+
+/* ✅ Meta Rows (Timestamp & Size) */
+.OptionsMenu .meta {
+  background: transparent !important;
+  color: var(--text-muted) !important;
+  padding: 6px 12px !important;
+  font-size: 12px !important;
+  pointer-events: none;
+  opacity: 0.7;
+}
