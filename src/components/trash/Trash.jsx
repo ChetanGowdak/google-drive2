@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import PageHeader from "../common/PageHeader";
 import { auth } from "../../firebase";
-import { getTrashFiles, restoreFile, deleteForever } from "../common/firebaseApi";
+import { getTrashFiles, restoreFile, handleDeleteFromTrash } from "../common/firebaseApi";
 import FileIcons from "../common/FileIcons";
 import { changeBytes, convertDates } from "../common/common";
 import { DeleteIcon } from "../common/SvgIcons";
@@ -19,39 +19,42 @@ const Trash = () => {
   }, []);
 
   return (
-    <TrashContainer>
-      <PageHeader pageTitle={"Trash"} />
-      {files.length === 0 ? (
-        <Empty>Nothing in Trash</Empty>
-      ) : (
-        <Grid>
-          {files.map((file) => (
-            <Card key={file.id}>
-              <IconWrap>
-                <FileIcons type={file.data.originalType || file.data.contentType || "application/octet-stream"} />
-              </IconWrap>
+  <TrashContainer>
+    {files.length === 0 ? (
+      <EmptyState>
+        <img src="/trash.svg" alt="Empty Trash" />
+        <p>No files in Trash</p>
+      </EmptyState>
+    ) : (
+      <Grid>
+        {files.map((file) => (
+          <Card key={file.id}>
+            <IconWrap>
+              <FileIcons type={file.data.originalType || file.data.contentType || "application/octet-stream"} />
+            </IconWrap>
 
-              <Info>
-                <Title title={file.data.filename}>🗑 {file.data.filename}</Title>
-                <Meta>
-                  <span>{changeBytes(file.data.originalSize || file.data.size)}</span>
-                  <span>•</span>
-                  <span>Deleted: {convertDates(file.data.deletedAt?.seconds || file.data.timestamp?.seconds)}</span>
-                </Meta>
+            <Info>
+              <Title title={file.data.filename}>🗑 {file.data.filename}</Title>
+              <Meta>
+                <span>{changeBytes(file.data.originalSize || file.data.size)}</span>
+                <span>•</span>
+                <span>Deleted: {convertDates(file.data.deletedAt?.seconds || file.data.timestamp?.seconds)}</span>
+              </Meta>
 
-                <Actions>
-                  <RestoreBtn onClick={() => restoreFile(file.id)}>♻ Restore</RestoreBtn>
-                  <DeleteBtn onClick={() => deleteForever(file.id, file.data)}>
-                    <DeleteIcon /> Delete forever
-                  </DeleteBtn>
-                </Actions>
-              </Info>
-            </Card>
-          ))}
-        </Grid>
-      )}
-    </TrashContainer>
-  );
+              <Actions>
+                <RestoreBtn onClick={() => restoreFile(file.id)}>♻ Restore</RestoreBtn>
+                <DeleteBtn onClick={() => handleDeleteFromTrash(file.id, file.data)}>
+                  <DeleteIcon /> Delete forever
+                </DeleteBtn>
+              </Actions>
+            </Info>
+          </Card>
+        ))}
+      </Grid>
+    )}
+  </TrashContainer>
+);
+
 };
 
 export default Trash;
@@ -149,6 +152,58 @@ const DeleteBtn = styled(BtnBase)`
   color: #991b1b;
   border-color: #fecaca;
   background: #fef2f2;
-  display: inline-flex; align-items: center; gap: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   &:hover { background: #fee2e2; }
+`;
+
+
+const EmptyState = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  // padding-top: 90px;
+  animation: fadeInScale 0.6s ease-out;
+
+  img {
+    width: 350px; /* ✅ Slightly bigger for more presence */
+    opacity: 0.95;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  p {
+    margin-top: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #6b7280;
+    opacity: 0;
+    animation: textFade 0.4s ease-out forwards;
+    animation-delay: 0.3s; /* ✅ Text fades after image appears */
+  }
+
+  body.dark-mode & p {
+    color: #9ca3af;
+  }
+
+  /* ✅ Soft floating animation */
+  @keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0); }
+  }
+
+  /* ✅ Dramatic entrance — from tiny to full size */
+  @keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.5); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  /* ✅ Text fades in after */
+  @keyframes textFade {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 `;

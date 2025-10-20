@@ -164,6 +164,12 @@ const ModalPopup = styled.div`
   padding: 10px;
   border-radius: 10px;
 
+  body.dark-mode & {
+    background-color: #2b2c2f !important;
+    border: 1px solid #3a3b3f !important;
+    color: #f1f1f1 !important;
+  }
+
   span {
     position: absolute;
     right: 10px;
@@ -177,6 +183,11 @@ const ModalHeading = styled.div`
   text-align: center;
   border-bottom: 1px solid lightgray;
   height: 40px;
+
+  body.dark-mode & {
+    border-bottom: 1px solid #3a3b3f !important;
+    color: #f1f1f1 !important;
+  }
 `;
 
 const ModalBody = styled.div`
@@ -185,6 +196,12 @@ const ModalBody = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
+  color: #000;
+
+  /* ✅ Dark Mode */
+  body.dark-mode & {
+    color: #e5e7eb !important;
+  }
 
   .progress_bar {
     width: 100%;
@@ -193,16 +210,27 @@ const ModalBody = styled.div`
     progress {
       width: 100%;
       padding: 1rem 0;
+
+      /* ✅ Dark Mode */
+      body.dark-mode & {
+        filter: brightness(0.8);
+      }
     }
 
     p {
       display: block;
-      color: #333;
       font-size: 16px;
       font-weight: 600;
+      color: #333;
+
+      /* ✅ Dark Mode */
+      body.dark-mode & {
+        color: #e5e7eb !important;
+      }
     }
   }
 `;
+
 
 const SidebarOptions = styled.div`
   margin-top: 10px;
@@ -239,5 +267,6 @@ const SidebarOption = styled.div`
     }
   }
 `;
+
 
 export default SidebarTabs;

@@ -6,6 +6,7 @@ import { auth } from "../../firebase";
 import LoaderContainer from "../loaders/LoaderContainer";
 import { delayInRender } from "../common/common";
 const FilesList = lazy(() => delayInRender(import("../common/FilesList")));
+import Recent3DPreview from "../three/Recent3DPreview";
 
 const Recent = () => {
   const [files, setFiles] = useState([]);
@@ -30,6 +31,8 @@ const Recent = () => {
   return (
     <RecentContainer>
       <PageHeader pageTitle={"Recents"} />
+      {/* <Recent3DPreview files={files} />
+      <Recent3DPreview files={files} /> */}
       <Suspense fallback={<LoaderContainer />}>
         <FilesList
           data={files?.slice(0, 9)}

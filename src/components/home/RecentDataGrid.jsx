@@ -1,19 +1,20 @@
 import React from "react";
 import styled from "styled-components";
 import FileIcons from "../common/FileIcons";
+import Recent3DPreview from "../three/Recent3DPreview";
+import FileCard3D from "../three/FileCard3D"; // ✅ Make sure file exists in /three/
+
 
 const RecentDataGrid = ({ files }) => {
   return (
     <DataGrid>
       {files.slice(0, 4).map((file) => (
-        <DataFile key={file.id} href={file.data.fileURL} target="_blank">
-          <FileIcons type={file.data.contentType} />
-          <p title={file.data.filename}>{file.data.filename}</p>
-        </DataFile>
+        <FileCard3D key={file.id} file={file} />
       ))}
     </DataGrid>
   );
 };
+
 
 const DataGrid = styled.div`
   width: 100%;

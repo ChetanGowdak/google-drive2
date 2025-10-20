@@ -83,6 +83,12 @@ const ProfileCard = styled.div`
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
   text-align: left;
   animation: fadeIn 0.2s ease-in-out;
+
+  body.dark-mode & {
+    background: #2b2c2f !important;
+    color: #f1f1f1 !important;
+    box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.1) !important;
+  }
 `;
 
 const ProfileImageLarge = styled.div`
@@ -92,6 +98,10 @@ const ProfileImageLarge = styled.div`
   border-radius: 50%;
   overflow: hidden;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+
+  body.dark-mode & {
+    box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+  }
 
   img {
     width: 100%;
@@ -119,6 +129,10 @@ const InfoRow = styled.div`
     font-size: 12px;
     color: gray;
   }
+
+  body.dark-mode .email {
+    color: #bfbfbf;
+  }
 `;
 
 const Divider = styled.div`
@@ -126,6 +140,10 @@ const Divider = styled.div`
   width: 100%;
   background: #e0e0e0;
   margin: 10px 0;
+
+  body.dark-mode & {
+    background: #3a3b3f;
+  }
 `;
 
 const SignOutButton = styled.div`
@@ -145,5 +163,17 @@ const SignOutButton = styled.div`
 
   svg {
     color: #d93025;
+  }
+
+  body.dark-mode & {
+    color: #ff6b6b !important;
+  }
+
+  body.dark-mode &:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+  }
+
+  body.dark-mode svg {
+    color: #ff6b6b;
   }
 `;
