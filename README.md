@@ -11,10 +11,6 @@ A full-stack cloud storage application built using React, Firebase, and styled-c
 - [Tech Stack](#tech-stack)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Development Highlights](#development-highlights)
-- [Future Plans](#future-plans)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Demo
 
@@ -43,16 +39,3 @@ Explore App [here](https://google-drive-clone-roan.vercel.app/)
 
 1. Start the development server: `npm run dev`
 2. Open the app in your browser: `http://localhost:5173`
-
-## Development Highlights
-
-- Describe key aspects of your development process, such as authentication setup, data storage choices, etc.
-
-## Future Plans
-
-- Mention any future enhancements or features you plan to implement.
-
-## Contributing
-
-Feel free to contribute by opening issues or submitting pull requests.
-"# Google-Drive" 
